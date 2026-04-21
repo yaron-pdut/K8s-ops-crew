@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: k8s-ops-crew-reader
+  labels:
+    app.kubernetes.io/name: k8s-ops-crew
+    app.kubernetes.io/component: agent
+rules:
+  # Core resources — read-only
+  - apiGroups: [""]
+    resources:
+      - pods
+      - pods/log
+      - nodes
+      - namespaces
+      - events
+      - services
+      - endpoints
+      - persistentvolumes
+      - persistentvolumeclaims
+      - configmaps
+      - resourcequotas
+      - limitranges
+    verbs: ["get", "list", "watch"]
+
+  # Apps resources — read-only
+  - apiGroups: ["apps"]
+    resources:
+      - deployments
+      - replicasets
+      - statefulsets
+      - daemonsets
+    verbs: ["get", "list", "watch"]
+
+  # Batch resources — read-only
+  - apiGroups: ["batch"]
+    resources:
+      - jobs
+      - cronjobs
+    verbs: ["get", "list", "watch"]
+
+  # Autoscaling — read-only
+  - apiGroups: ["autoscaling"]
+    resources:
+      - horizontalpodautoscalers
+    verbs: ["get", "list", "watch"]
+
+  # Metrics API (metrics-server)
+  - apiGroups: ["metrics.k8s.io"]
+    resources:
+      - nodes
+      - pods
+    verbs: ["get", "list"]

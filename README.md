@@ -1,12 +1,12 @@
 # K8sOps Crew: Autonomous Multi-Agent System for Kubernetes Operations & Maintenance
 
-**A senior developer project for mastering agentic AI in real infrastructure environments (2026)**
+A senior developer project for mastering agentic AI in real infrastructure environments (2026)*
 
 ---
 
 ## Project Overview
 
-**K8sOps Crew** is a multi-agent AI system that acts as an intelligent SRE (Site Reliability Engineering) assistant for Kubernetes clusters. 
+**K8sOps Crew** is a multi-agent AI system that acts as an intelligent SRE (Site Reliability Engineering) assistant for Kubernetes clusters.
 
 You provide a high-level natural language intent, such as:
 
@@ -16,6 +16,7 @@ You provide a high-level natural language intent, such as:
 - “Perform a weekly maintenance audit and generate a report”
 
 The crew then autonomously:
+
 - Diagnoses cluster health
 - Performs root cause analysis
 - Suggests or applies safe remediations (with human approval gates)
@@ -26,6 +27,7 @@ The crew then autonomously:
 This project bridges **agentic AI** (planning, tool use, reflection, orchestration) with **real-world Kubernetes operations**, giving you deep experience in building reliable, safe, and observable multi-agent systems that interact with live infrastructure.
 
 **Why build this in 2026?**
+
 - Kubernetes remains the de-facto orchestration platform, now running complex AI workloads.
 - Alert fatigue and operational toil are growing.
 - Agentic AI is emerging as a powerful tool for autonomous remediation and FinOps.
@@ -36,6 +38,7 @@ This project bridges **agentic AI** (planning, tool use, reflection, orchestrati
 ## Goals & Learning Outcomes
 
 ### Primary Goals
+
 - Build a production-grade multi-agent workflow using stateful orchestration.
 - Safely integrate AI agents with Kubernetes APIs and observability tools.
 - Implement human-in-the-loop safeguards for write operations.
@@ -43,6 +46,7 @@ This project bridges **agentic AI** (planning, tool use, reflection, orchestrati
 - Demonstrate practical value by running the crew on real (or test) clusters.
 
 ### Key Skills You’ll Develop
+
 - **Agent orchestration** with cycles, conditional routing, and reflection.
 - **Tool integration** with Kubernetes Python client, metrics queries, and logging.
 - **Safety & guardrails** — RBAC scoping, dry-run mode, approval nodes, rollback planning.
@@ -90,10 +94,12 @@ The system uses a **hierarchical supervisor pattern** with shared state and refl
    - Includes executive summary, technical details, and citations/references to cluster objects.
 
 ### Optional Advanced Agents
+
 - **Security Scanner Agent** — Checks for misconfigurations, vulnerable images, excessive RBAC, etc.
 - **Predictor Agent** — Uses historical patterns to forecast potential issues.
 
 ### Workflow Patterns
+
 - **Shared Memory / State Graph** — Passed between agents (cluster snapshots, analysis artifacts, plans).
 - **Reflection & Critique Loops** — Agents review each other’s hypotheses or plans.
 - **Human-in-the-Loop** — Interruptions for high-risk decisions.
@@ -107,7 +113,7 @@ The system uses a **hierarchical supervisor pattern** with shared state and refl
 - **Orchestration Framework**: **LangGraph** (LangChain ecosystem) — Best for controllable, stateful graphs with human-in-the-loop, persistence, and debugging.  
   Alternatives: CrewAI (faster prototyping), AutoGen (conversational), or emerging Kubernetes-native options like Kagenti / Agent Sandbox patterns.
 
-- **LLM Backend**: 
+- **LLM Backend**:
   - Strong reasoning models (Claude 3.5/4, GPT-4o-class, or Grok) for analysis and planning.
   - Faster/cheaper models for diagnostics and reporting.
   - Support for structured outputs (JSON schemas).
@@ -143,26 +149,31 @@ The system uses a **hierarchical supervisor pattern** with shared state and refl
 ## Implementation Roadmap
 
 ### Phase 1: Foundation (Week 1)
+
 - Set up LangGraph project with basic supervisor + single diagnostic agent.
 - Implement Kubernetes client tools (list pods, get events, top nodes, etc.).
 - Create a simple “cluster health summary” endpoint.
 
 ### Phase 2: Core Workflow (Week 2)
+
 - Add parallel diagnostics and shared state graph.
 - Implement Analyzer with reflection loop (“Critique this root cause”).
 - Add basic reporting.
 
 ### Phase 3: Optimization & Remediation (Week 3)
+
 - Build Optimizer and Remediator agents.
 - Add strict approval gates and dry-run support.
 - Integrate metrics querying.
 
 ### Phase 4: Verification, Polish & Testing (Week 4)
+
 - Add Verifier and full report generation.
 - Inject test failures (e.g., scale down a deployment, create resource pressure) and validate resolution.
 - Set up LangSmith tracing and measure metrics: success rate, iterations, cost per run, time-to-resolution.
 
 ### Phase 5: Extensions & Production Readiness (Ongoing)
+
 - Multi-cluster support.
 - Predictive issue detection.
 - Security scanning agent.
@@ -227,8 +238,6 @@ This project is portfolio-worthy, immediately useful for your team or personal c
 
 ---
 
-**Author**: Grok (built by xAI) — tailored guidance for senior software developers  
+**Author**: Yaron Pdut
 **Version**: 1.0 (April 2026)  
 **License**: MIT (feel free to use and extend)
-
-Happy building! If you implement parts of this, share your learnings or ask for code skeletons, sample prompts, or tool definitions for specific agents.
