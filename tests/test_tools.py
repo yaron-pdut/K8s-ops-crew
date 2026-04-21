@@ -8,7 +8,6 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-
 # ---------------------------------------------------------------------------
 # Helpers to build fake kubernetes API objects
 # ---------------------------------------------------------------------------
@@ -26,7 +25,7 @@ def _make_pod(
     pod.metadata.name = name
     pod.metadata.namespace = namespace
     pod.metadata.creation_timestamp = datetime.datetime(
-        2026, 4, 20, 10, 0, 0, tzinfo=datetime.timezone.utc
+        2026, 4, 20, 10, 0, 0, tzinfo=datetime.UTC
     )
     pod.spec.containers = [MagicMock()]
     pod.spec.node_name = node_name
@@ -48,7 +47,7 @@ def _make_node(
     node.metadata.name = name
     node.metadata.labels = {"node-role.kubernetes.io/worker": ""}
     node.metadata.creation_timestamp = datetime.datetime(
-        2026, 4, 19, 0, 0, 0, tzinfo=datetime.timezone.utc
+        2026, 4, 19, 0, 0, 0, tzinfo=datetime.UTC
     )
     cond = MagicMock()
     cond.type = "Ready"
@@ -78,8 +77,8 @@ def _make_event(
     evt.involved_object.kind = kind
     evt.involved_object.name = obj_name
     evt.count = count
-    evt.first_timestamp = datetime.datetime(2026, 4, 21, 9, 0, tzinfo=datetime.timezone.utc)
-    evt.last_timestamp = datetime.datetime(2026, 4, 21, 10, 0, tzinfo=datetime.timezone.utc)
+    evt.first_timestamp = datetime.datetime(2026, 4, 21, 9, 0, tzinfo=datetime.UTC)
+    evt.last_timestamp = datetime.datetime(2026, 4, 21, 10, 0, tzinfo=datetime.UTC)
     evt.event_time = None
     return evt
 

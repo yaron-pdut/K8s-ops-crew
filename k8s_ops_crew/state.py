@@ -1,7 +1,6 @@
 """Shared LangGraph state definition for K8sOps Crew."""
 
-from typing import Annotated
-from typing import Any
+from typing import Annotated, Any
 
 from langgraph.graph.message import add_messages
 from typing_extensions import TypedDict
