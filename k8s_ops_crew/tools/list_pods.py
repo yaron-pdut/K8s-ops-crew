@@ -50,8 +50,7 @@ def list_pods(namespace: str = "") -> list[dict[str, Any]]:
             import datetime
 
             age_seconds = (
-                datetime.datetime.now(datetime.UTC)
-                - pod.metadata.creation_timestamp
+                datetime.datetime.now(datetime.UTC) - pod.metadata.creation_timestamp
             ).total_seconds()
 
         results.append(

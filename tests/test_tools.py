@@ -24,9 +24,7 @@ def _make_pod(
     pod = MagicMock()
     pod.metadata.name = name
     pod.metadata.namespace = namespace
-    pod.metadata.creation_timestamp = datetime.datetime(
-        2026, 4, 20, 10, 0, 0, tzinfo=datetime.UTC
-    )
+    pod.metadata.creation_timestamp = datetime.datetime(2026, 4, 20, 10, 0, 0, tzinfo=datetime.UTC)
     pod.spec.containers = [MagicMock()]
     pod.spec.node_name = node_name
     pod.status.phase = phase
@@ -46,9 +44,7 @@ def _make_node(
     node = MagicMock()
     node.metadata.name = name
     node.metadata.labels = {"node-role.kubernetes.io/worker": ""}
-    node.metadata.creation_timestamp = datetime.datetime(
-        2026, 4, 19, 0, 0, 0, tzinfo=datetime.UTC
-    )
+    node.metadata.creation_timestamp = datetime.datetime(2026, 4, 19, 0, 0, 0, tzinfo=datetime.UTC)
     cond = MagicMock()
     cond.type = "Ready"
     cond.status = ready_status
@@ -251,7 +247,9 @@ class TestTopNodes:
         assert result[1]["cpu_millicores"] == pytest.approx(1000.0)
         assert result[1]["memory_mi"] == pytest.approx(2048.0)
 
-    def test_graceful_fallback_when_metrics_unavailable(self, mock_k8s_client) -> None:  # noqa: ANN001
+    def test_graceful_fallback_when_metrics_unavailable(
+        self, mock_k8s_client
+    ) -> None:  # noqa: ANN001
         from k8s_ops_crew.tools.top_nodes import top_nodes
 
         custom = MagicMock()

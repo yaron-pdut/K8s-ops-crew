@@ -34,9 +34,9 @@ class TestGraph:
         # Second call → supervisor after diagnostics (returns empty to trigger advance).
         # Third call → diagnostics (returns snapshot JSON).
         llm.invoke.side_effect = [
-            _ai_message(SUPERVISOR_PLAN),           # supervisor first pass
-            _ai_message(json.dumps(FAKE_SNAPSHOT)), # diagnostics
-            _ai_message(""),                        # supervisor second pass (advance phase)
+            _ai_message(SUPERVISOR_PLAN),  # supervisor first pass
+            _ai_message(json.dumps(FAKE_SNAPSHOT)),  # diagnostics
+            _ai_message(""),  # supervisor second pass (advance phase)
         ]
         return llm
 
@@ -46,8 +46,10 @@ class TestGraph:
 
         mock_llm = self._build_mock_llm()
 
-        with patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm), \
-             patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm):
+        with (
+            patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+        ):
 
             graph = build_graph()
             result = graph.invoke(
@@ -75,8 +77,10 @@ class TestGraph:
 
         mock_llm = self._build_mock_llm()
 
-        with patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm), \
-             patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm):
+        with (
+            patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+        ):
 
             graph = build_graph()
             result = graph.invoke(
@@ -103,8 +107,10 @@ class TestGraph:
 
         mock_llm = self._build_mock_llm()
 
-        with patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm), \
-             patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm):
+        with (
+            patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+        ):
 
             graph = build_graph()
             result = graph.invoke(
@@ -131,8 +137,10 @@ class TestGraph:
 
         mock_llm = self._build_mock_llm()
 
-        with patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm), \
-             patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm):
+        with (
+            patch("k8s_ops_crew.agents.supervisor.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+        ):
 
             graph = build_graph()
             result = graph.invoke(

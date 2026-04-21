@@ -69,8 +69,7 @@ def list_nodes() -> list[dict[str, Any]]:
             import datetime
 
             age_seconds = (
-                datetime.datetime.now(datetime.UTC)
-                - node.metadata.creation_timestamp
+                datetime.datetime.now(datetime.UTC) - node.metadata.creation_timestamp
             ).total_seconds()
 
         node_info = node.status.node_info if node.status else None

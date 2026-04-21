@@ -4,7 +4,7 @@
 # Development
 # ---------------------------------------------------------------------------
 install:
-	pip install -e ".[dev]"
+	pip install -e ".[dev]" --index-url https://pypi.org/simple/ --extra-index-url https://pypi.org/simple/ 
 
 lint:
 	ruff check k8s_ops_crew tests

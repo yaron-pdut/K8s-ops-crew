@@ -54,8 +54,7 @@ def diagnostics_node(state: ClusterOpsState) -> dict[str, Any]:
     messages.append(
         HumanMessage(
             content=(
-                f"{_SYSTEM_PROMPT}\n\n"
-                f"User intent: {state.get('user_intent', 'health summary')}"
+                f"{_SYSTEM_PROMPT}\n\n" f"User intent: {state.get('user_intent', 'health summary')}"
             )
         )
     )

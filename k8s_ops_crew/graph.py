@@ -23,6 +23,7 @@ logger = logging.getLogger(__name__)
 # Reporter node (Phase 1 stub — full implementation in Phase 2)
 # ---------------------------------------------------------------------------
 
+
 def reporter_node(state: ClusterOpsState) -> dict[str, Any]:
     """Compile cluster_snapshot into a Markdown health summary report."""
     snapshot = state.get("cluster_snapshot", {})
@@ -94,6 +95,7 @@ def reporter_node(state: ClusterOpsState) -> dict[str, Any]:
 # Routing function
 # ---------------------------------------------------------------------------
 
+
 def _route_supervisor(state: ClusterOpsState) -> Literal["diagnostics", "reporter", "__end__"]:
     """Decide the next node based on the current phase set by the supervisor."""
     phase = state.get("current_phase", "")
@@ -107,6 +109,7 @@ def _route_supervisor(state: ClusterOpsState) -> Literal["diagnostics", "reporte
 # ---------------------------------------------------------------------------
 # Graph factory
 # ---------------------------------------------------------------------------
+
 
 def build_graph(checkpointer: MemorySaver | None = None) -> Any:
     """Assemble and compile the Phase 1 LangGraph state graph.

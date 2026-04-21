@@ -79,8 +79,7 @@ def supervisor_node(state: ClusterOpsState) -> dict[str, Any]:
         text = response.content
         if isinstance(text, list):
             text = " ".join(
-                block.get("text", "") if isinstance(block, dict) else str(block)
-                for block in text
+                block.get("text", "") if isinstance(block, dict) else str(block) for block in text
             )
         parsed = json.loads(text)
         plan = parsed.get("plan", plan)
