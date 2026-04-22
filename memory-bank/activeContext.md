@@ -13,21 +13,28 @@
 
 ## Current Focus
 
-Phase 1 goal: stand up a working `Supervisor → DiagnosticsAgent → Reporter` pipeline that produces a cluster health summary from a natural-language intent.
+**Phase 1 — COMPLETE ✅**
 
-### Active Tasks
+### Task Status
 
 | Task | Status |
 | ------ | -------- |
-| Project scaffold (`pyproject.toml`, `Makefile`, `.env.example`) | 🔲 Not started |
-| Shared state definition (`ClusterOpsState` TypedDict) | 🔲 Not started |
-| Kubernetes read-only tools (`list_pods`, `list_nodes`, `get_events`, `top_nodes`) | 🔲 Not started |
-| Diagnostics Agent (LangGraph node) | 🔲 Not started |
-| Supervisor Agent (LangGraph node) | 🔲 Not started |
-| Graph assembly (`StateGraph`, `MemorySaver`) | 🔲 Not started |
-| CLI entry-point (`main.py`) | 🔲 Not started |
-| kind test cluster + RBAC manifests | 🔲 Not started |
-| Unit tests (`pytest` suite) | 🔲 Not started |
+| Project scaffold (`pyproject.toml`, `Makefile`, `.env.example`) | ✅ Done |
+| Shared state definition (`ClusterOpsState` TypedDict) | ✅ Done |
+| Kubernetes read-only tools (`list_pods`, `list_nodes`, `get_events`, `top_nodes`) | ✅ Done |
+| Diagnostics Agent (LangGraph node) | ✅ Done |
+| Supervisor Agent (LangGraph node) | ✅ Done |
+| Graph assembly (`StateGraph`, `MemorySaver`) | ✅ Done |
+| CLI entry-point (`main.py`) | ✅ Done |
+| kind test cluster + RBAC manifests | ✅ Done |
+| Unit tests (`pytest` suite) | ✅ Done — 23/23 passed, 80.70% coverage |
+
+### Next Focus: Phase 2 — Core Workflow
+
+- Add `AnalyzerAgent` with reflection/critique loop
+- Parallel diagnostics execution via LangGraph fan-out
+- Full `ReporterAgent` (Markdown/HTML output)
+- Prometheus / OpenTelemetry metrics integration
 
 ---
 

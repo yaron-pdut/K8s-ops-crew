@@ -8,7 +8,7 @@
 
 | Phase | Title | Status |
  | ------- | ------- | -------- |
-| Phase 1 | Foundation | 🟡 In Progress |
+| Phase 1 | Foundation | ✅ Complete |
 | Phase 2 | Core Workflow | 🔲 Not Started |
 | Phase 3 | Optimization & Remediation | 🔲 Not Started |
 | Phase 4 | Verification, Polish & Testing | 🔲 Not Started |
@@ -22,46 +22,46 @@
 
 ### Scaffold & Config
 
-- [ ] `pyproject.toml` with deps, ruff, black, pytest config
-- [ ] `Makefile` with `lint`, `format`, `test`, `kind-up`, `kind-down`, `run`
-- [ ] `.env.example` with all required env vars
-- [ ] Package skeleton: `k8s_ops_crew/`, `tests/`, `infra/`
+- [x] `pyproject.toml` with deps, ruff, black, pytest config
+- [x] `Makefile` with `lint`, `format`, `test`, `kind-up`, `kind-down`, `run`
+- [x] `.env.example` with all required env vars
+- [x] Package skeleton: `k8s_ops_crew/`, `tests/`, `infra/`
 
 ### Core Modules
 
-- [ ] [`k8s_ops_crew/state.py`](../k8s_ops_crew/state.py) — `ClusterOpsState` TypedDict
-- [ ] [`k8s_ops_crew/config.py`](../k8s_ops_crew/config.py) — pydantic-settings `Settings`
-- [ ] [`k8s_ops_crew/tools/k8s_client.py`](../k8s_ops_crew/tools/k8s_client.py) — K8s client singleton
-- [ ] [`k8s_ops_crew/tools/list_pods.py`](../k8s_ops_crew/tools/list_pods.py)
-- [ ] [`k8s_ops_crew/tools/list_nodes.py`](../k8s_ops_crew/tools/list_nodes.py)
-- [ ] [`k8s_ops_crew/tools/get_events.py`](../k8s_ops_crew/tools/get_events.py)
-- [ ] [`k8s_ops_crew/tools/top_nodes.py`](../k8s_ops_crew/tools/top_nodes.py)
-- [ ] [`k8s_ops_crew/agents/diagnostics.py`](../k8s_ops_crew/agents/diagnostics.py)
-- [ ] [`k8s_ops_crew/agents/supervisor.py`](../k8s_ops_crew/agents/supervisor.py)
-- [ ] [`k8s_ops_crew/graph.py`](../k8s_ops_crew/graph.py)
-- [ ] [`k8s_ops_crew/main.py`](../k8s_ops_crew/main.py)
+- [x] [`k8s_ops_crew/state.py`](../k8s_ops_crew/state.py) — `ClusterOpsState` TypedDict
+- [x] [`k8s_ops_crew/config.py`](../k8s_ops_crew/config.py) — pydantic-settings `Settings`
+- [x] [`k8s_ops_crew/tools/k8s_client.py`](../k8s_ops_crew/tools/k8s_client.py) — K8s client singleton
+- [x] [`k8s_ops_crew/tools/list_pods.py`](../k8s_ops_crew/tools/list_pods.py)
+- [x] [`k8s_ops_crew/tools/list_nodes.py`](../k8s_ops_crew/tools/list_nodes.py)
+- [x] [`k8s_ops_crew/tools/get_events.py`](../k8s_ops_crew/tools/get_events.py)
+- [x] [`k8s_ops_crew/tools/top_nodes.py`](../k8s_ops_crew/tools/top_nodes.py)
+- [x] [`k8s_ops_crew/agents/diagnostics.py`](../k8s_ops_crew/agents/diagnostics.py)
+- [x] [`k8s_ops_crew/agents/supervisor.py`](../k8s_ops_crew/agents/supervisor.py)
+- [x] [`k8s_ops_crew/graph.py`](../k8s_ops_crew/graph.py)
+- [x] [`k8s_ops_crew/main.py`](../k8s_ops_crew/main.py)
 
 ### Infrastructure
 
-- [ ] [`infra/kind-cluster.yaml`](../infra/kind-cluster.yaml)
-- [ ] [`infra/rbac/serviceaccount.yaml`](../infra/rbac/serviceaccount.yaml)
-- [ ] [`infra/rbac/clusterrole.yaml`](../infra/rbac/clusterrole.yaml)
-- [ ] [`infra/rbac/clusterrolebinding.yaml`](../infra/rbac/clusterrolebinding.yaml)
+- [x] [`infra/kind-cluster.yaml`](../infra/kind-cluster.yaml)
+- [x] [`infra/rbac/serviceaccount.yaml`](../infra/rbac/serviceaccount.yaml)
+- [x] [`infra/rbac/clusterrole.yaml`](../infra/rbac/clusterrole.yaml)
+- [x] [`infra/rbac/clusterrolebinding.yaml`](../infra/rbac/clusterrolebinding.yaml)
 
 ### Tests
 
-- [ ] [`tests/conftest.py`](../tests/conftest.py)
-- [ ] [`tests/test_tools.py`](../tests/test_tools.py)
-- [ ] [`tests/test_diagnostics_agent.py`](../tests/test_diagnostics_agent.py)
-- [ ] [`tests/test_graph.py`](../tests/test_graph.py)
+- [x] [`tests/conftest.py`](../tests/conftest.py)
+- [x] [`tests/test_tools.py`](../tests/test_tools.py)
+- [x] [`tests/test_diagnostics_agent.py`](../tests/test_diagnostics_agent.py)
+- [x] [`tests/test_graph.py`](../tests/test_graph.py)
 
 ### Definition of Done Checklist
 
-- [ ] `make lint` — zero errors
-- [ ] `make test` — all pass, ≥ 80% coverage on `tools/` and `agents/`
-- [ ] `make run` — health summary printed to stdout against live kind cluster
-- [ ] LangSmith trace visible with all agent steps
-- [ ] No write operations — confirmed by read-only RBAC
+- [x] `make lint` — zero errors (ruff: 8 fixed, 0 remaining)
+- [x] `make test` — 23/23 passed, 80.70% total coverage
+- [ ] `make run` — health summary printed to stdout against live kind cluster (requires OPENAI_API_KEY + kind cluster)
+- [ ] LangSmith trace visible with all agent steps (requires LANGCHAIN_API_KEY)
+- [ ] No write operations — confirmed by read-only RBAC (verified by manifest: get/list/watch only)
 
 ---
 
