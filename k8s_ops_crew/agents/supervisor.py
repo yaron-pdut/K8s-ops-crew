@@ -6,9 +6,8 @@ import logging
 from typing import Any
 
 from langchain_core.messages import HumanMessage
-from langchain_openai import ChatOpenAI
 
-from k8s_ops_crew.config import settings
+from k8s_ops_crew.llm import get_llm
 from k8s_ops_crew.state import ClusterOpsState
 
 logger = logging.getLogger(__name__)
@@ -33,11 +32,8 @@ Always return ONLY valid JSON (no markdown fences) with this exact schema:
 """
 
 
-def _build_llm() -> ChatOpenAI:
-    return ChatOpenAI(
-        model=settings.supervisor_model,
-        temperature=0,
-    )
+def _build_llm():  # type: ignore[return]
+    return get_llm()
 
 
 def supervisor_node(state: ClusterOpsState) -> dict[str, Any]:

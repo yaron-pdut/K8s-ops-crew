@@ -7,9 +7,8 @@ import logging
 from typing import Any
 
 from langchain_core.messages import HumanMessage, ToolMessage
-from langchain_openai import ChatOpenAI
 
-from k8s_ops_crew.config import settings
+from k8s_ops_crew.llm import get_llm
 from k8s_ops_crew.state import ClusterOpsState
 from k8s_ops_crew.tools.get_events import get_events
 from k8s_ops_crew.tools.list_nodes import list_nodes
@@ -20,6 +19,8 @@ logger = logging.getLogger(__name__)
 
 _TOOLS = [list_pods, list_nodes, get_events, top_nodes]
 
+# Ollama with format="json" doesn't support native tool calls;
+# we fall back to asking the LLM to call tools by name in JSON.
 _SYSTEM_PROMPT = """\
 You are a Kubernetes Diagnostics Agent. Your job is to collect a comprehensive
 snapshot of the current cluster state using the tools provided.
@@ -35,11 +36,8 @@ list on error).
 """
 
 
-def _build_llm() -> ChatOpenAI:
-    return ChatOpenAI(
-        model=settings.diagnostics_model,
-        temperature=0,
-    ).bind_tools(_TOOLS)
+def _build_llm():  # type: ignore[return]
+    return get_llm(tools=_TOOLS)
 
 
 def diagnostics_node(state: ClusterOpsState) -> dict[str, Any]:

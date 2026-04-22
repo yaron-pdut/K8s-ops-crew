@@ -56,7 +56,13 @@ def reporter_node(state: ClusterOpsState) -> dict[str, Any]:
     if metrics:
         lines += ["", "## Node Resource Usage"]
         for m in metrics:
-            lines.append(f"  - `{m['name']}` cpu={m['cpu_millicores']}m mem={m['memory_mi']}Mi")
+            if not isinstance(m, dict):
+                continue
+            lines.append(
+                f"  - `{m.get('name', '?')}` "
+                f"cpu={m.get('cpu_millicores', '?')}m "
+                f"mem={m.get('memory_mi', '?')}Mi"
+            )
 
     lines += [
         "",
@@ -65,9 +71,11 @@ def reporter_node(state: ClusterOpsState) -> dict[str, Any]:
         f"- Unhealthy (non-Running/Succeeded): {len(not_running)}",
     ]
     for pod in not_running[:20]:
+        if not isinstance(pod, dict):
+            continue
         lines.append(
-            f"  - `{pod['namespace']}/{pod['name']}` phase={pod.get('phase')} "
-            f"restarts={pod.get('restarts', 0)}"
+            f"  - `{pod.get('namespace', '?')}/{pod.get('name', '?')}` "
+            f"phase={pod.get('phase')} restarts={pod.get('restarts', 0)}"
         )
 
     lines += [
@@ -76,9 +84,12 @@ def reporter_node(state: ClusterOpsState) -> dict[str, Any]:
         f"- Total Warning events: {len(events)}",
     ]
     for evt in events[:10]:
+        if not isinstance(evt, dict):
+            continue
         lines.append(
-            f"  - `{evt.get('involved_object_kind')}/{evt.get('involved_object_name')}` "
-            f"reason={evt.get('reason')} count={evt.get('count')} — {evt.get('message', '')[:120]}"
+            f"  - `{evt.get('involved_object_kind', '?')}/{evt.get('involved_object_name', '?')}` "
+            f"reason={evt.get('reason', '?')} count={evt.get('count', '?')} "
+            f"— {str(evt.get('message', ''))[:120]}"
         )
 
     if errors:
