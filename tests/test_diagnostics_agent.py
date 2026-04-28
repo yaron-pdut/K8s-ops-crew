@@ -26,7 +26,7 @@ class TestDiagnosticsNode:
         mock_llm.bind_tools.return_value = mock_llm
         mock_llm.invoke.return_value = llm_response
 
-        with patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm):
+        with patch("k8s_ops_crew.agents.diagnostics._build_llm", return_value=mock_llm):
             result = diagnostics_node(
                 {
                     "user_intent": "health summary",
@@ -69,7 +69,7 @@ class TestDiagnosticsNode:
         fake_tool.invoke.return_value = FAKE_SNAPSHOT["pods"]
 
         with (
-            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics._build_llm", return_value=mock_llm),
             patch("k8s_ops_crew.agents.diagnostics._TOOLS", [fake_tool]),
         ):
             result = diagnostics_node(
@@ -110,7 +110,7 @@ class TestDiagnosticsNode:
         broken_tool.invoke.side_effect = RuntimeError("connection refused")
 
         with (
-            patch("k8s_ops_crew.agents.diagnostics.ChatOpenAI", return_value=mock_llm),
+            patch("k8s_ops_crew.agents.diagnostics._build_llm", return_value=mock_llm),
             patch("k8s_ops_crew.agents.diagnostics._TOOLS", [broken_tool]),
         ):
             result = diagnostics_node(

@@ -5,12 +5,14 @@ from __future__ import annotations
 from typing import Any
 from unittest.mock import patch
 
-from tests.conftest import FAKE_SNAPSHOT
-
+from tests.conftest import (
+    FAKE_SNAPSHOT,
+)
 
 # ---------------------------------------------------------------------------
 # Fake node implementations
 # ---------------------------------------------------------------------------
+
 
 def _fake_supervisor(state: dict[str, Any]) -> dict[str, Any]:
     """Stand-in for supervisor_node: sets plan and advances phase."""

@@ -1,24 +1,28 @@
 .PHONY: install lint format test kind-up kind-down run clean
 
+export UV_KEYRING_PROVIDER := disabled
+export UV_EXTRA_INDEX_URL :=
+export UV_INDEX_URL := https://pypi.org/simple/
+
 # ---------------------------------------------------------------------------
 # Development
 # ---------------------------------------------------------------------------
 install:
-	pip install -e ".[dev]" --index-url https://pypi.org/simple/ --extra-index-url https://pypi.org/simple/ 
+	uv sync --extra dev
 
 lint:
-	ruff check k8s_ops_crew tests
-	black --check k8s_ops_crew tests
+	uv run ruff check k8s_ops_crew tests
+	uv run black --check k8s_ops_crew tests
 
 format:
-	ruff check --fix k8s_ops_crew tests
-	black k8s_ops_crew tests
+	uv run ruff check --fix k8s_ops_crew tests
+	uv run black k8s_ops_crew tests
 
 test:
-	pytest
+	uv run pytest
 
 test-fast:
-	pytest -x --no-cov
+	uv run pytest -x --no-cov
 
 # ---------------------------------------------------------------------------
 # kind cluster
@@ -37,7 +41,7 @@ kind-down:
 # Run
 # ---------------------------------------------------------------------------
 run:
-	python -m k8s_ops_crew "Give me a health summary of the current cluster"
+	uv run python -m k8s_ops_crew "Give me a health summary of the current cluster"
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} + 2>/dev/null || true
