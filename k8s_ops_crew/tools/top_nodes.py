@@ -62,7 +62,7 @@ def top_nodes() -> list[dict[str, Any]]:
             plural=_METRICS_PLURAL,
         )
     except Exception as exc:
-        logger.warning(
+        logger.debug(
             "top_nodes: metrics.k8s.io unavailable (%s). "
             "Is metrics-server installed? Returning empty list.",
             exc,
